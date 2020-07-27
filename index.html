@@ -161,38 +161,26 @@
 						<script>
 							let ctx = document.getElementById('budgetChart').getContext('2d');
 							let budgetChart = new Chart(ctx, {
-								type: 'line',
+								type: 'bar',
 								data: {
-									labels: ['JUL', 'AUG', 'SEP', 'OCT'],
+									labels: ['Three times Afternoon', 'Two times Afternoon', 'One time Afternoon', 'No Other Afternoon'],
 									datasets: [{
-											label: 'No Another Afternoon Tea',
-											data: [574, 774, 974, 1174],
-											backgroundColor: [
-												'rgba(255, 99, 132, 0)'
-											],
-											borderColor: [
-												'rgba(255, 99, 132, 1)'
-										]},
-										{
-											label: 'One Time Afternoon Tea',
-											data: [574, 774, 774, 974],
-											backgroundColor: [
-												'rgba(99,169,255,0)'
-											],
-											borderColor: [
-												'rgb(99,169,255)'
-											]},
-										{
-											label: 'Two Times Afternoon Tea',
-											data: [574, 574, 774, 974],
-											backgroundColor: [
-												'rgba(255,185,99, 0)'
-											],
-											borderColor: [
-												'rgb(255,185,99)'
-											]},
-
-									]
+										label: 'Gift Box Budget',
+										data: [574, 774, 974, 1174],
+										backgroundColor: [
+											'rgba(255, 99, 132, 0.2)',
+											'rgba(54, 162, 235, 0.2)',
+											'rgba(255, 206, 86, 0.2)',
+											'rgba(75, 192, 192, 0.2)'
+										],
+										borderColor: [
+											'rgba(255, 99, 132, 1)',
+											'rgba(54, 162, 235, 1)',
+											'rgba(255, 206, 86, 1)',
+											'rgba(75, 192, 192, 1)',
+										],
+										borderWidth: 1
+									}]
 								},
 								options: {
 									scales: {
