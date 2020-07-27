@@ -1,0 +1,294 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/white.css" id="theme">
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+		<style>
+			.gift-box.title {
+				margin-bottom: 60px;
+			}
+			.gift-box.calendar {
+				border: 1px solid black;
+				margin: 10px;
+				box-sizing: border-box;
+				border-radius: 10px;
+			}
+			.gift-box.month {
+				padding: 10px 0;
+				color: #444;
+			}
+			.gift-box.week-grid {
+				display: grid;
+				grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+			}
+			.gift-box.week {
+				background: #0b7c99;
+			}
+			.gift-box.day-grid {
+				display: grid;
+				grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+			}
+			.gift-box.day {
+				padding: 10px;
+				width: 40px;
+				height: 40px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin: 0 auto;
+				cursor: pointer;
+				border-radius: 50%;
+				color: #444;
+			}
+			.gift-box.day.select {
+				 background: #0b7c99;
+				 color: white;
+			 }
+			.gift-box.day.apply {
+				color: #0b7c99;
+			}
+			.gift-box.day.check {
+				color: #e3810a;
+			}
+			.gift-box.day.select:hover {
+				background: #0b7c99;
+				color: white;
+			}
+			.gift-box.day:hover {
+				background: #e8e8e8;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<section>
+						<div>Moon Festival Gift Box</div>
+						<img src="assets/gift.png" style="width: 400px" alt="">
+					</section>
+					<section>
+						<div class="gift-box title">Gift Box Process Schedule</div>
+						<div class="gift-box container">
+							<div class="gift-box calendar">
+								<div class="gift-box month">September</div>
+								<div class="gift-box week-grid">
+									<div class="gift-box week">MON</div>
+									<div class="gift-box week">TUE</div>
+									<div class="gift-box week">WED</div>
+									<div class="gift-box week">THU</div>
+									<div class="gift-box week">FRI</div>
+									<div class="gift-box week">SAT</div>
+									<div class="gift-box week">SUN</div>
+								</div>
+								<div class="gift-box day-grid">
+									<div class="gift-box day"></div>
+									<div class="gift-box day"></div>
+									<div class="gift-box day" onclick="setNewDate(this)">1</div>
+									<div class="gift-box day" onclick="setNewDate(this)">2</div>
+									<div class="gift-box day" onclick="setNewDate(this)">3</div>
+									<div class="gift-box day" onclick="setNewDate(this)">4</div>
+									<div class="gift-box day" onclick="setNewDate(this)">5</div>
+									<div class="gift-box day" onclick="setNewDate(this)">6</div>
+									<div class="gift-box day" onclick="setNewDate(this)">7</div>
+									<div class="gift-box day" onclick="setNewDate(this)">8</div>
+									<div class="gift-box day check" onclick="setNewDate(this)">9</div>
+									<div class="gift-box day" onclick="setNewDate(this)">10</div>
+									<div class="gift-box day" onclick="setNewDate(this)">11</div>
+									<div class="gift-box day" onclick="setNewDate(this)">12</div>
+									<div class="gift-box day" onclick="setNewDate(this)">13</div>
+									<div class="gift-box day" onclick="setNewDate(this)">14</div>
+									<div class="gift-box day" onclick="setNewDate(this)">15</div>
+									<div class="gift-box day apply" onclick="setNewDate(this)">16</div>
+									<div class="gift-box day" onclick="setNewDate(this)">17</div>
+									<div class="gift-box day" onclick="setNewDate(this)">18</div>
+									<div class="gift-box day" onclick="setNewDate(this)">19</div>
+									<div class="gift-box day" onclick="setNewDate(this)">20</div>
+									<div class="gift-box day" onclick="setNewDate(this)">21</div>
+									<div class="gift-box day" onclick="setNewDate(this)">22</div>
+									<div class="gift-box day select" onclick="setNewDate(this)">23</div>
+									<div class="gift-box day" onclick="setNewDate(this)">24</div>
+									<div class="gift-box day" onclick="setNewDate(this)">25</div>
+									<div class="gift-box day" onclick="setNewDate(this)">26</div>
+									<div class="gift-box day" onclick="setNewDate(this)">27</div>
+									<div class="gift-box day" onclick="setNewDate(this)">28</div>
+									<div class="gift-box day" onclick="setNewDate(this)">29</div>
+									<div class="gift-box day" onclick="setNewDate(this)">30</div>
+								</div>
+							</div>
+						</div>
+						<script>
+							let list = document.getElementsByClassName('gift-box day');
+							console.log(list)
+							function initDayChoose() {
+								for(const item of list) {
+									item.classList.remove('select');
+									item.classList.remove('apply');
+									item.classList.remove('check');
+								}
+							}
+							function setNewDate(e) {
+								initDayChoose();
+								console.log('do');
+								let index = parseInt(e.innerText) + 1;
+								if (index >= 2) {
+									list[index].classList.add('select');
+								}
+								if (index-14 >= 2 ) {
+									list[index-14].classList.add('check');
+								}
+								if (index-7 >= 2 ) {
+									list[index-7].classList.add('apply');
+								}
+							}
+						</script>
+					</section>
+					<section>
+						<div class="gift-budget title">Moon Festival Gift Box Budget</div>
+						<div class="gift-budget container">
+							<canvas id="budgetChart"></canvas>
+						</div>
+
+						<script>
+							let ctx = document.getElementById('budgetChart').getContext('2d');
+							let budgetChart = new Chart(ctx, {
+								type: 'line',
+								data: {
+									labels: ['JUL', 'AUG', 'SEP', 'OCT'],
+									datasets: [{
+											label: 'No Another Afternoon Tea',
+											data: [574, 774, 974, 1174],
+											backgroundColor: [
+												'rgba(255, 99, 132, 0)'
+											],
+											borderColor: [
+												'rgba(255, 99, 132, 1)'
+										]},
+										{
+											label: 'One Time Afternoon Tea',
+											data: [574, 774, 774, 974],
+											backgroundColor: [
+												'rgba(99,169,255,0)'
+											],
+											borderColor: [
+												'rgb(99,169,255)'
+											]},
+										{
+											label: 'Two Times Afternoon Tea',
+											data: [574, 574, 774, 974],
+											backgroundColor: [
+												'rgba(255,185,99, 0)'
+											],
+											borderColor: [
+												'rgb(255,185,99)'
+											]},
+
+									]
+								},
+								options: {
+									scales: {
+										yAxes: [{
+											ticks: {
+												beginAtZero: true
+											}
+										}]
+									}
+								}
+							});
+						</script>
+					</section>
+					<section>
+						<a style="text-decoration: none; color: black" href="https://auntstella.com/collections/%E7%B6%B2%E8%B7%AF%E7%8D%A8%E8%B3%A3/products/%E5%8F%B2%E9%BB%9B%E6%8B%89%E7%9A%84%E5%A5%87%E5%B9%BB%E6%97%85%E7%A8%8B">
+							<div>史黛拉的奇幻旅程 ($520)</div>
+							<img src="assets/choose-one.png" style="width: 400px" alt="">
+						</a>
+					</section>
+					<section>
+						<a style="text-decoration: none; color: black" href="https://www.chochoco.com/moon-festival/chochoco-moon-festival">
+							<div>奇幻漫月中秋禮盒 ($548)</div>
+							<img src="assets/choose-two.png" style="width: 400px" alt="">
+						</a>
+					</section>
+					<section>
+						<a style="text-decoration: none; color: black" href="https://m.momoshop.com.tw/goods.momo?i_code=5892231&mdiv=searchEngine&oid=1_2&kw=%E5%85%83%E7%A5%96%E9%9B%AA%E9%A4%85">
+							<div>元祖雪餅 經典禮盒($842)</div>
+							<img src="assets/choose-three.jpg" style="width: 400px" alt="">
+						</a>
+					</section>
+				</section>
+				<section>
+					<section>
+						<div>Movie Activity</div>
+						<img src="assets/movie.png" style="width: 400px" alt="">
+					</section>
+					<section>
+						<div>Feasibility Analysis</div>
+						<ul style="list-style: none; margin-top: 60px">
+							<li style="margin-top: 10px">Do we need it?</li>
+							<li style="margin-top: 10px">When to do it?</li>
+							<li style="margin-top: 10px">How to do?</li>
+							<li style="margin-top: 10px">How to choose movie?</li>
+						</ul>
+					</section>
+					<section>
+						<div>Jobs (2013)</div>
+						<img src="assets/movie-one.jpg" style="width: 400px" alt="">
+					</section>
+					<section>
+						<div>Joker</div>
+						<img src="assets/movie-two.jpg" style="width: 400px" alt="">
+					</section>
+					<section>
+						<div>Annabelle goes home</div>
+						<img src="assets/movie-three.jpg" style="width: 400px" alt="">
+					</section>
+					<section>
+						<div>Godzilla: King of the Monsters</div>
+						<img src="assets/movie-four.jpg" style="width: 400px" alt="">
+					</section>
+				</section>
+				<section>
+					<section>
+						<div>Annual Activity</div>
+						<img src="assets/christmas.png" style="width: 400px" alt="">
+					</section>
+					<section>
+						<div>Christmas Activity</div>
+						<ul style="list-style: none; margin-top: 60px">
+							<li style="margin-top: 10px">Change Gift</li>
+							<li style="margin-top: 10px">Budget?($200~$300)</li>
+							<li style="margin-top: 10px">How to encourage coworker attend?</li>
+							<li style="margin-top: 10px">Limit gift content?(life)</li>
+						</ul>
+					</section>
+				</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+				center: false,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
